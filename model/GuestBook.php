@@ -25,7 +25,8 @@ class GuestBook{
     public function savePost($post){
         //Saving the posts        
         array_push($this->messages,$post);
-        //INnsert Into Database                 
+
+        //Innsert Into Database                 
         $serializedPost=json_encode(serialize($post));
         $handle = $this->conn->getPdo()->prepare("INSERT INTO post (message) VALUES(:m)");         
         $handle->bindValue(':m', $serializedPost);
@@ -36,12 +37,12 @@ class GuestBook{
     /**
      * Get the value of messages
      */ 
-    public function getMessages()
+    public function getMessages($totShowPost)
     {
         $messagesToShow="";
         $messageOrdered=array_reverse($this->messages);
       foreach ($messageOrdered as $index => $oneMessage) {
-         if ($index < 20)
+         if ($index < $totShowPost)
          {  
             $title=$oneMessage->getTitle();
             $content=$oneMessage->getContent();

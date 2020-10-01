@@ -1,7 +1,6 @@
 <?php
 interface  ConnectDB{
-    public function getConnection();
-    public function closeConnection():boolval;    
+    public function getConnection();      
 }
 
 class ConnectDB_MySql implements ConnectDB{
@@ -33,12 +32,6 @@ class ConnectDB_MySql implements ConnectDB{
             
         }
     }
-
-    public function closeConnection():boolval{
-        $this->pdo=null;
-        return true;
-    }
-
     /*** Get the value of pdo */ 
     public function getPdo()
     {

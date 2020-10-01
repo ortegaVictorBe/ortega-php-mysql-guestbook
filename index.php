@@ -11,6 +11,7 @@ require "model/GuestBook.php";
 
 $guestBook = new GuestBook();
 $userMessage="";
+$totShowPost=20;
 
 
 if ($_SERVER["REQUEST_METHOD"]=="POST" ){
@@ -65,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST" ){
         $guestBook->savePost($newPost); 
       }
 
-    
+      $totShowPost=$_POST["howManyPostView"];
 }
 
-
+//Clean function - reviw the Dataentry
 function cleanInput($data){
     $data=trim($data);
     $data=stripslashes($data);
@@ -77,4 +78,5 @@ function cleanInput($data){
 };
 
  require 'view/guestBookView.php';
+ unset($guestBook);
 ?>
